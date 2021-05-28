@@ -13,13 +13,11 @@ import com.douzone.mysite.repository.GuestbookRepository;
 import com.douzone.mysite.vo.GuestbookVo;
 
 public class ListAction implements Action {
-
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-List<GuestbookVo> list = new GuestbookRepository().findAll();
+		List<GuestbookVo> list = new GuestbookRepository().findAll();
 		
 		request.setAttribute("list", list);
 		MvcUtils.forward("guestbook/list", request, response);
 	}
-
 }

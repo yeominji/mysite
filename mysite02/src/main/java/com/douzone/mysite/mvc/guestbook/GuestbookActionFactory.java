@@ -13,9 +13,9 @@ Action action = null;
 		if("delete".equals(actionName)) {
 			action = new DeleteAction();
 		} else if("deleteform".equals(actionName)) {
-			action = new DeleteFromAction();
+			action = new DeleteFormAction();
 		} else if("add".equals(actionName)) {
-			System.out.println("ㅎㅇ");
+			//System.out.println("ㅎㅇ");
 			action = new AddAction();
 		} else {
 			action = new ListAction();
