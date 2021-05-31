@@ -9,20 +9,12 @@ import javax.servlet.http.HttpServletResponse;
 import com.douzone.web.Action;
 import com.douzone.web.util.MvcUtils;
 
-public class ListAction implements Action {
+public class ModifyAction implements Action {
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//totalPage=ceil(10/4)
-		//firstPageNo=
-		//lastPageNo=
-		//nextPageNo =
-		//prevPageNo=
-		//currentPageNo=
-		// a 링크 빼기
-		
-		MvcUtils.forward("board/list", request, response);
-	
+		MvcUtils.forward("board/modify", request, response);
+
 	}
 
 }
