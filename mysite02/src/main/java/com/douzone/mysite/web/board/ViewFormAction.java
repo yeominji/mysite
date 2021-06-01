@@ -1,4 +1,4 @@
-package com.douzone.mysite.web.user;
+package com.douzone.mysite.web.board;
 
 import java.io.IOException;
 
@@ -7,21 +7,22 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.douzone.mysite.vo.UserVo;
 import com.douzone.web.Action;
 import com.douzone.web.util.MvcUtils;
 
-public class LoginOutAction implements Action {
+public class ViewFormAction implements Action {
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	 HttpSession session =request.getSession();
-	 if(session ==null) {
-		 /*로그아웃*/
-		 session.removeAttribute("authUesr");
-		 session.invalidate();
-	 
-	}
+		HttpSession session =  request.getSession(true);
+		UserVo userVo = (UserVo) session.getAttribute("authUser");
+		if (userVo == null) {
+			return;
+		}
 
-	 MvcUtils.redirect(request.getContextPath(), request, response);
- }
+		MvcUtils.forward("board/view", request, response);
+	}
+	
+
 }
