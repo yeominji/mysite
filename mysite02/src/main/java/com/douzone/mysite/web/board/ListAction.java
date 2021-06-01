@@ -27,7 +27,7 @@ public class ListAction implements Action {
 		// a 링크 빼기
 	List<BoardVo> list = new BoardRepository().findAll();
 		
-		request.setAttribute("list", list);
+		request.setAttribute("vo", list);
 		MvcUtils.forward("board/list", request, response);
 	
 	}

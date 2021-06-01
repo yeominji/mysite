@@ -1,6 +1,7 @@
 package com.douzone.mysite.web.board;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -22,16 +23,15 @@ public class ViewAction implements Action {
 		if (userVo == null) {
 			return;
 		}
-			String title = request.getParameter("title");
-			String content = request.getParameter("content");
-			
-			BoardVo vo = new BoardVo();
-			vo.setTitle(title);
-			vo.setContents(content);
+			String no = request.getParameter("no");
 		
-			new BoardRepository().insert(vo);
 			
-			MvcUtils.redirect(request.getContextPath()+"/board", request, response);
+		
+			BoardVo vo = new BoardRepository().findByNo(Long.parseLong(no));
+			request.setAttribute("vo", vo);
+			
+			
+			MvcUtils.forward("board/view", request, response);
 	}
 
 }
