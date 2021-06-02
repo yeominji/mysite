@@ -64,12 +64,12 @@
 					</ul>
 				</div>					
 				<!-- pager 추가 -->
-				
+			
+				<c:if test="${!empty authUser }">
 				<div class="bottom">
 					<a href="${pageContext.request.contextPath }/board?a=writeform" id="new-book">글쓰기</a>
-					
-
-				</div>				
+				</div>
+				</c:if>				
 			</div>
 		</div>
 		<c:import url="/WEB-INF/views/includes/navigation.jsp">

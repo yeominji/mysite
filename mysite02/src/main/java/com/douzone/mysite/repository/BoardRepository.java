@@ -12,6 +12,8 @@ import com.douzone.mysite.vo.BoardVo;
 
 
 public class BoardRepository {
+	public Object findByNo;
+
 	public boolean insert(BoardVo vo) {
 		Connection conn = null;
 		PreparedStatement pstmt = null;

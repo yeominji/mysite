@@ -15,7 +15,7 @@ public class LogoutAction implements Action {
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	 HttpSession session =request.getSession();
-	 if(session ==null) {
+	 if(session !=null) {
 		 /*로그아웃*/
 		 session.removeAttribute("authUesr");
 		 session.invalidate();

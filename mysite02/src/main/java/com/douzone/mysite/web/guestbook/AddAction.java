@@ -24,6 +24,8 @@ public class AddAction implements Action {
 		vo.setPassword(password);
 		vo.setMessage(message);
 		
+		System.out.println(vo.toString());
+		
 		new GuestbookRepository().insert(vo);
 		MvcUtils.redirect(request.getContextPath() + "/guestbook", request, response);
 

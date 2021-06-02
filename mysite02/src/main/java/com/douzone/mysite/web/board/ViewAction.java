@@ -18,11 +18,8 @@ public class ViewAction implements Action {
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		HttpSession session =  request.getSession(true);
-		UserVo userVo = (UserVo) session.getAttribute("authUser");
-		if (userVo == null) {
-			return;
-		}
+		
+		
 			String no = request.getParameter("no");
 		
 			

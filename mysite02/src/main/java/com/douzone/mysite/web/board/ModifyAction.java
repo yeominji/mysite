@@ -23,15 +23,19 @@ public class ModifyAction implements Action {
 		if (userVo == null) {
 			return;
 		}
-			String title = request.getParameter("title");
+		    String no = request.getParameter("no");
+		    String title = request.getParameter("title");
 			String content = request.getParameter("content");
 			
-			BoardVo vo = new BoardVo();
+			BoardVo vo =new BoardRepository().findByNo(Long.parseLong(no));
+			
+		
 			vo.setTitle(title);
 			vo.setContents(content);
-		
-			List<BoardVo> list = new BoardRepository().findAll();
-			request.setAttribute("vo", list);
+			
+			
+		new BoardRepository().updateBoard(title, content, vo.getNo());
+			
 			
 			
 			MvcUtils.redirect(request.getContextPath()+"/board", request, response);
