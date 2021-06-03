@@ -1,11 +1,9 @@
 package com.douzone.mysite.controller;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.douzone.mysite.service.GuestbookService;
 import com.douzone.mysite.vo.GuestbookVo;
@@ -15,10 +13,15 @@ import com.douzone.mysite.vo.GuestbookVo;
 public class GuestbookController {
 	@Autowired
 	GuestbookService guestbookService;
-@RequestMapping("")
-public String index(Model model) {
-	List<GuestbookVo> list =  guestbookService.getMessageList();
- model.addAttribute("list",list);
- return "/WEB-INF/views/index.jsp";
- }
+
+	@RequestMapping("")
+	public String index() {
+		return ("/WEB-INF/views/guestbook/index.jsp");
+	}
+
+	@RequestMapping(value = "/add", method = RequestMethod.POST)
+	public String add(GuestbookVo vo) {
+		guestbookService.add(vo);
+		return "redirect:/guestbook";
+	}
 }

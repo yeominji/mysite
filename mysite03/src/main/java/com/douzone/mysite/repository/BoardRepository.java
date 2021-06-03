@@ -1,4 +1,4 @@
-package com.dozone.mysite.repository;
+package com.douzone.mysite.repository;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

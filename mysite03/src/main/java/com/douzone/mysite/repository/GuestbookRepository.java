@@ -1,6 +1,7 @@
-package com.dozone.mysite.repository;
+package com.douzone.mysite.repository;
 
 import java.sql.Connection;
+
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -11,6 +12,7 @@ import java.util.List;
 import org.springframework.stereotype.Repository;
 
 import com.douzone.mysite.vo.GuestbookVo;
+
 @Repository
 public class GuestbookRepository {
 	public List<GuestbookVo> findAll() {
