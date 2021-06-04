@@ -8,6 +8,6 @@ public class MainController {
 	@RequestMapping("")
 	public String index() {
 		System.out.println("--------");
-		return "/WEB-INF/views/main/index.jsp";
+		return "main/index";
 	}
 }
