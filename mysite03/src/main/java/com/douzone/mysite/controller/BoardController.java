@@ -11,25 +11,27 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.douzone.mysite.security.Auth;
-import com.douzone.mysite.service.GuestbookService;
-import com.douzone.mysite.vo.GuestbookVo;
+import com.douzone.mysite.service.BoardService;
+
+import com.douzone.mysite.vo.BoardVo;
+
 @Auth
 @Controller
-@RequestMapping("/guestbook")
-public class GuestbookController {
+@RequestMapping("/board")
+public class BoardController {
 	@Autowired
-	GuestbookService guestbookService;
+	BoardService boardService;
 	
 	@RequestMapping("")
 	public String index(Model model) {
-		List<GuestbookVo> list = guestbookService.getMessageList();
+		List<BoardVo> list = boardService.getContentsList();
 		model.addAttribute("list", list);
-		return "guestbook/index";
+		return "board/index";
 	}
 	
 	@RequestMapping(value="/add", method=RequestMethod.POST)
-	public String add(GuestbookVo vo) {
-		guestbookService.addMessage(vo);
+	public String add(BoardVo vo) {
+		boardService.addContent(vo);
 		return "redirect:/guestbook";
 	}
 	
@@ -41,14 +43,7 @@ public class GuestbookController {
 
 	@RequestMapping(value="/delete/{no}", method=RequestMethod.POST)
 	public String delete(@PathVariable("no") Long no, @RequestParam(value="password", required=true, defaultValue="") String password) {
-		guestbookService.deleteMessage(no, password);
+		
 		return "redirect:/guestbook";
 	}
-	
-//	@ExceptionHandler(Exception.class)
-//	public String handlerEception() {
-//		return "error/exception";
-//	}
-
 }
-	
