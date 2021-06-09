@@ -1,47 +1,52 @@
 package com.douzone.mysite.controller;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.douzone.mysite.exception.GlobalExceptionHandler;
 import com.douzone.mysite.security.Auth;
+import com.douzone.mysite.service.FileUploadService;
+import com.douzone.mysite.service.SiteService;
 import com.douzone.mysite.vo.SiteVo;
-@Auth(role ="ADMIN")
+
+@Auth(role="ADMIN")
 @Controller
 @RequestMapping("/admin")
 public class AdminController {
-	  private static final Log LOGGER =LogFactory.getLog(GlobalExceptionHandler.class);
-   @RequestMapping("")	
-	 public String main() {
-	   
-	  return "admin/main";
- }
-   
-   @RequestMapping(value="/main/update",method=RequestMethod.POST)	
-	 public String updteMain(SiteVo vo) {
-	   
-	  return "redirect:/admin";
+	@Autowired
+	private SiteService siteService;
+
+	@Autowired
+	private FileUploadService filUploadService;
+	
+	@RequestMapping("")
+	public String main(Model model) {
+		SiteVo vo = siteService.getSite();
+		model.addAttribute("vo", vo);
+		return "admin/main";
+	}
+
+	@RequestMapping(value="/main/update", method=RequestMethod.POST)
+	public String updateMain(SiteVo vo) {
+		siteService.updateSite(vo);
+		return "redirect:/admin";
+	}
+	
+	@RequestMapping("/guestbook")
+	public String guesbook() {
+		return "admin/guestbook";
+	}
+	
+	@RequestMapping("/board")
+	public String board() {
+		return "admin/board";
+	}
+
+	@RequestMapping("/user")
+	public String user() {
+		return "admin/user";
+	}
+	
 }
-   
-   @RequestMapping("/guestbook")	
-	 public String guestbook() {
-	   
-	  return "admin/guestbook";
-}
-   
-   @RequestMapping("/boa")	
-	 public String board() {
-	   
-	  return "admin/board";
-}
-   @RequestMapping("/board")	
-	 public String user() {
-	   
-	  return "admin/user";
-}
-   
-}
-  
