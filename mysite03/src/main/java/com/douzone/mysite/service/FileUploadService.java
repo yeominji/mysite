@@ -10,13 +10,15 @@ import org.springframework.web.multipart.MultipartFile;
 
 @Service
 public class FileUploadService {
-	private static final String SAVE_PATH = "/urs/yeominji/uploads-mysite";
+	private static final String SAVE_PATH = "/Users/yeominji/uploads-mysite";
 	private static final String URL_BASE="/images/";
+	
 	public String restore(MultipartFile file) {
 		String url = null;
 
 		try {
 			if(file.isEmpty()) {
+				 
 				return url;
 			}
 
