@@ -1,5 +1,9 @@
 package com.douzone.mysite.service;
 
+
+
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -10,17 +14,29 @@ public class GalleryService {
 @Autowired
 GalleryRepository galleryRepository;
 
-	
-
-public Object upload(GalleryVo vo) {
-		return galleryRepository.updateload(vo);
-		
+public int delete(long no) {
+	return galleryRepository.delete(no);
 	}
 
+public List<GalleryVo> findAll() {
+	return galleryRepository.findAll();
+}
 
-//public void delete(long parseLong) {
-//	
-//	return galleryRepository.delete(no);
+public int upload(GalleryVo vo) {
+	return galleryRepository.insert(vo);
 	
+}
+
+
+
+
+
+
+
+
+
+
+
+
 }
 

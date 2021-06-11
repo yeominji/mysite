@@ -1,5 +1,7 @@
 package com.douzone.mysite.repository;
 
+import java.util.List;
+
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -11,20 +13,26 @@ public class GalleryRepository {
  @Autowired
  private SqlSession sqlSession;
     
-   public int insert (GalleryVo vo) {
+    public int insert (GalleryVo vo) {
 	return sqlSession.insert("gallery.insert",vo);
    }
 	
+     public  int delete(Long no) {
+		return sqlSession.delete("grllery.Delete",no);
+	}
 
-//     public Object delete (Long no) {
-//	return sqlSession.delect("gallery.Delete",no);
-//	}
-//	
+       public List<GalleryVo> findAll() {
+		
+		return sqlSession.selectList("gallery.findAll");
+	}
+
+	
 
 
-     public Object updateload(GalleryVo vo) {
-	        return sqlSession.update("gallery.upload",vo);
-}
+
+
+
+
 	
 	
 	
