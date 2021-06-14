@@ -36,17 +36,19 @@ public class GalleryController {
 
 	@RequestMapping("")
 	public String index(Model model) {
-		List<GalleryVo>vo=galleryService.findAll();
+		List<GalleryVo> vo=galleryService.findAll();
+		System.out.println(vo.toString());
 		model.addAttribute( "vo",vo );
 		return "gallery/index";
 	}
-	
+
 	
 	
 	@Auth(role="ADMIN")
 	@RequestMapping(value ="/upload",method=RequestMethod.POST)
-	public String upload(@RequestParam(value="file")@ModelAttribute MultipartFile file, String comments)  {
+	public String upload(@RequestParam(value="file") @ModelAttribute MultipartFile file, String comments)  {
 		String url =fileuploadService.restore(file);
+		System.out.println(url);
 		System.out.println("comment:" + comments);
 		GalleryVo vo =new GalleryVo();
 		vo.setComment(comments);

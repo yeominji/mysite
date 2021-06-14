@@ -7,7 +7,7 @@
 	]]>
 	</select>
 	
-	<insert id="upload" parameterType="galleryvo">
+	<insert id="insert" parameterType="galleryvo">
 		<![CDATA[
 		insert
 		  into gallery

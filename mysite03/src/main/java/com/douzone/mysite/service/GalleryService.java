@@ -22,10 +22,14 @@ public List<GalleryVo> findAll() {
 	return galleryRepository.findAll();
 }
 
-public int upload(GalleryVo vo) {
+public int  upload(GalleryVo vo) {
 	return galleryRepository.insert(vo);
 	
 }
+
+
+
+
 
 
 

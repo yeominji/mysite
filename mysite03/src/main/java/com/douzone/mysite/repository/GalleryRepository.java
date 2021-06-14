@@ -18,7 +18,7 @@ public class GalleryRepository {
    }
 	
      public  int delete(Long no) {
-		return sqlSession.delete("grllery.Delete",no);
+		return sqlSession.delete("gallery.Delete",no);
 	}
 
        public List<GalleryVo> findAll() {
