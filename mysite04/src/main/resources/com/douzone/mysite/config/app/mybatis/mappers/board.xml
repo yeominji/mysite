@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="board">
+	<select id="findAll" resultType="boardvo">
+		<![CDATA[	
+		  select a.no as no, a.title as title, a.contents as contents, a.reg_date as regDate, a.hit as hit, a.group_no as groupNo, a.order_no as orderNo, a.depth as depth, a.user_no as userNo, b.name as userName
+		  from board a, user b 
+		  where a.user_no = b.no order by group_no desc, order_no asc
+	]]>
+	</select>
+	
+	<insert id="insert" parameterType="boardvo">
+		<![CDATA[
+		insert
+		  into board
+		values (null, #{title }, #{contents}, now(),  #{hit }, #{groupNo},#{orderNo},#{depth},#{userNo} )
+	  	]]>
+	  	<selectKey keyProperty="no" resultType="long" order="AFTER">
+			<![CDATA[
+		  	select last_insert_id()
+	  		]]>
+	  	</selectKey>	
+	</insert>
+	<select id= "reply" resultType ="boardvo">
+	insert 
+	into board
+	value (null,#{title},#{contents})
+	</select>
+	
+	<select id ="findgroupNo" resultType="int">
+	<![CDATA[
+		select max(group_no) from board
+	]]>
+	</select>
+	
+	
+		<select id="findByNO" resultType="boardvo" parameterType="long"> 
+		<![CDATA[	
+		  select a.no as no, a.title as title, a.contents as contents, a.reg_date as regDate, a.hit as hit, a.group_no as groupNo, a.order_no as orderNo, a.depth as depth, a.user_no as userNo, b.name as userName
+		  from board a, user b where a.user_no = b.no and a.no = #{no}
+	]]>
+	</select>
+	
+	<delete id="Delete" parameterType="long">
+		<![CDATA[	
+		  delete from board where no = #{no}  
+	]]>
+	</delete>
+	
+	<update id="updateBoard" parameterType="boardvo">
+		<![CDATA[	
+		 update board set title =#{title}, contents=#{contents} where no = #{no}
+	]]>
+	</update>
+	
+	<update id="updatehit" parameterType="boardvo">
+		<![CDATA[	
+		 update board set hit=#{hit}+1 where no=#{no}
+	]]>
+	</update>
+	
+	<update id="updateNo" parameterType="boardvo">
+			<![CDATA[	
+			update board set order_no = order_no+1 where group_no=#{groupNo} and order_no >= #{orderNo}
+	]]>
+	
+	</update>
+</mapper>
