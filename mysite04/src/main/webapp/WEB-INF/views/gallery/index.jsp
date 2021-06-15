@@ -64,7 +64,6 @@ $(function(){
                          
 							<a	href="${pageContext.request.contextPath }/gallery/delete/${vo.no}"
 								class="del-button"
-								style ="background
 								title="삭제">삭제</a>
 								
 						</li>
