@@ -5,14 +5,12 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.context.annotation.Import;
 
-import com.douzone.config.web.FileuploadConfig;
-import com.douzone.config.web.MvcConfig;
-import com.douzone.config.web.SecurityConfig;
+import com.douzone.config.app.DBConfig;
+import com.douzone.config.app.MyBatisConfig;
 
 @Configuration
 @EnableAspectJAutoProxy
-@ComponentScan({"com.douzone.mysite.controller", "com.douzone.mysite.exception"})
-@Import({MvcConfig.class,FileuploadConfig.class, SecurityConfig.class})
-public class WebConfig {
-
-}
+@ComponentScan({"com.douzone.mysite.repository", "com.douzone.mysite.service", "com.douzone.mysite.aspect"})
+@Import({DBConfig.class, MyBatisConfig.class})
+public class AppConfig {
+} 

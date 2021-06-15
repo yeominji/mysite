@@ -6,7 +6,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.douzone.mysite.repository.BoardRepository;
 import com.douzone.mysite.vo.BoardVo;
@@ -18,7 +18,7 @@ import com.douzone.mysite.vo.UserVo;
 public class BoardService {
 	@Autowired
 	BoardRepository boardRepository;
-	
+	@Transactional
 		public BoardVo findByNo(long no) {
 		return  boardRepository.findByNo(no);
 	
