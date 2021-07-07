@@ -14,15 +14,19 @@ public class GuestbookService {
 	GuestbookRepository guestbookRepository;
 	
 	public List<GuestbookVo> getMessageList() {
-			return guestbookRepository.select();
+			return guestbookRepository.findAll();
 	}
 	
-	public void deleteMessage(Long no, String password) {
+	public List<GuestbookVo> getMessageList(Long no/*기준*/) {
+		return guestbookRepository.findAll(no);
+	}
+	
+	public boolean deleteMessage(Long no, String password) {
 		GuestbookVo vo = new GuestbookVo();
 		vo.setNo(no);
 		vo.setPassword(password);
 		
-		guestbookRepository.delete(vo);
+		return guestbookRepository.delete(vo);
 	}
 
 	public void addMessage(GuestbookVo vo) {

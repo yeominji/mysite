@@ -22,7 +22,9 @@ public class GuestbookRepository {
 
 		return count ==1;
 	}
-
+	public List<GuestbookVo> findAll(Long no) {
+		return sqlSession.selectList("guestbook.findAllByNo", no);
+	}
 
 
 	public boolean  delete (GuestbookVo vo) {
@@ -33,7 +35,7 @@ public class GuestbookRepository {
 	}
 
 
-	public List<GuestbookVo>  select () {
+	public List<GuestbookVo>  findAll () {
 		return  sqlSession.selectList("guestbook.findAll");
 
 
