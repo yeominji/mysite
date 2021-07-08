@@ -31,6 +31,7 @@ public class GuestbookService {
 
 	public void addMessage(GuestbookVo vo) {
 		guestbookRepository.insert(vo);
+		
 	}
 	
 }
